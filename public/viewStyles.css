@@ -1,0 +1,28 @@
+#tarjeta{
+    
+    margin: 2% 25%;
+    padding: 3%;
+}
+
+#footerTarjeta{
+    text-align: right;
+}
+
+#pie{
+    font-size: 16px;
+    text-align: center;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    height: 80px;
+    background: dodgerblue;
+    color: white;    
+}
+
+#borrar{
+    margin-right: 10px;
+}
+
+#guardar{
+    margin-right: 10px;
+}

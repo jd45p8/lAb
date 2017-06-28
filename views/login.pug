@@ -1,0 +1,27 @@
+html
+    head        
+        include generals/head        
+        link(rel='stylesheet', href='loginStyles.css', type='text/css')
+        link(rel='stylesheet', href='fontStyles.css', type='text/css')
+    body
+        div(class='z-depth-3' id='contenedor')
+            h1 Iniciar
+            form(class='col s12')
+                div(class='row')
+                    div(class='input-field')
+                        input(id='email' type='email' class='validate' name='email' required)
+                        label(for='email') Correo
+                div(class='row')
+                    div(class='input-field')
+                        input(id='password' type='password' class='validate' name='password' required)
+                        label(for='password') Contraseña
+                div(class='row')
+                    button(class='btn waves-effect blue' type='submit') Enviar
+                div(class='row' id='ir_a')
+                    a Desea ir al 
+                        a(href='/home') 
+                            Strong Inicio
+                        a ?
+        include generals/footer
+    
+        

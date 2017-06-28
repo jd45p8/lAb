@@ -1,0 +1,23 @@
+{
+    "name": "laboratorio",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "nodejs ./app"
+    },
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "^1.4.3",
+        "express": "^4.15.3",
+        "express-session": "^1.15.3",
+        "glob": "^7.1.2",
+        "jquery": "^3.2.1",
+        "mongoose": "^4.11.0",
+        "morgan": "^1.8.2",
+        "nodemon": "^1.11.0",
+        "passport": "^0.3.2",
+        "passport-local": "^1.0.0",
+        "pug": "^2.0.0-rc.2"
+    }
+}

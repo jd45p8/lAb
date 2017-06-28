@@ -1,0 +1,26 @@
+hml
+    head
+        include generals/head
+        link(rel='stylesheet',href='viewStyles.css',type='text/css')
+        link(rel='stylesheet', href='fontStyles.css', type='text/css')
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    body
+        include generals/nav
+        div
+            div(class='z-depth-3' id='tarjeta')
+                form(class='col s12')
+                    div(class='row')
+                        div(class='input-field col s6')
+                            input(id='product_name' type='text' name='product_name' required)
+                            label(for='product_name') Nombre del producto
+                        div(class='input-field col s6')
+                            input(id='valor' type='number' min='0' name='valor' required)
+                            label(for='valor') Valor
+                footer
+                    div(class='col s12' id='footerTarjeta')
+                        button(class='btn-floating waves-effect red' id='borrar' type='submit')
+                            i(class='material-icons') delete
+                        button(class='btn-floating waves-effect blue' id='guardar' type='submit')
+                            i(class='material-icons') system_update_alt
+                            
+    include generals/footer

@@ -1,0 +1,27 @@
+html
+    head
+        include generals/head
+        link(rel='stylesheet', href='addStyles.css', type='text/css')
+        link(rel='stylesheet', href='fontStyles.css', type='text/css')
+    body
+        include generals/nav
+        div(class='z-depth-3' id='container')        
+            header
+                h2 Añadir producto                
+            form(class='col s12' action='/addProducto' method='post')
+                div(class='row')
+                    div(class='input-field col s12')
+                        input(id='product_name' type='text' class='validate' name='product_name' required)
+                        label(for='product_name') Nombre del producto
+                div(class='row')
+                    div(class='input-field col s12')
+                        input(id='code' type='number' min='0' class='validate' name='code' required)
+                        label(for='code') Código
+                div(class='row')
+                    div(class='input-field col s12')
+                        input(id='valor' type='number' min='0' class='validate' name='valor' required)
+                        label(for='valor') Valor
+                div(class='row')
+                    button(class='btn waves-effect blue' type='submit') Enviar
+                
+        include generals/footer

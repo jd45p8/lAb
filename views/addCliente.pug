@@ -1,0 +1,39 @@
+html
+    head
+        include generals/head
+        link(rel='stylesheet', href='addStyles.css', type='text/css')
+        link(rel='stylesheet', href='fontStyles.css', type='text/css')
+    body
+        include generals/nav
+        div(class='z-depth-3' id='container')        
+            header
+                h2 Añadir cliente                
+            form(class='col s12')
+                div(class='row')
+                    div(class='input-field col s12')
+                        input(id='first_name' type='text' class='validate' name='first_name' required)
+                        label(for='first_name') Nombres
+                div(class='row')
+                    div(class='input-field col s12')
+                        input(id='last_name' type='text' class='validate' name='last_name' required)
+                        label(for='last_name') Apellidos
+                div(class='row')
+                    div(class='input-field col s12')
+                        input(id='cedula' type='number' min='0' class='validate' name='cedula' required)
+                        label(for='cedula') Cedula
+                div(class='row')
+                    div(class='input-field col s12')
+                        input(id='celular' type='number' min='0' class='validate' name='celular' required)
+                        label(for='celular') Celular
+                div(class='row')
+                    div(class='input-field col s12')
+                        input(id='direccion' type='text' class='validate' name='direccion' required)
+                        label(for='direccion') Dirección
+                div(class='row')
+                    div(class='input-field col s12')
+                        input(id='email' type='email' class='validate' name='email' required)
+                        label(for='email') Correo
+                div(class='row')
+                    button(class='btn waves-effect blue' type='submit') Enviar
+                
+        include generals/footer
