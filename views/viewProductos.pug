@@ -1,11 +1,10 @@
-hml
+html
     head
         include generals/head
-        link(rel='stylesheet',href='viewStyles.css',type='text/css')
-        link(rel='stylesheet', href='fontStyles.css', type='text/css')
+        link(rel='stylesheet',href='viewStyles.css',type='text/css')        
         link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
     body
-        include generals/nav
+        include generals/nav                
         div
             div(class='z-depth-3' id='tarjeta')
                 form(class='col s12')
@@ -18,9 +17,9 @@ hml
                             label(for='valor') Valor
                 footer
                     div(class='col s12' id='footerTarjeta')
-                        button(class='btn-floating waves-effect red' id='borrar' type='submit')
+                        button(class='btn-floating waves-effect red tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar'  id='borrar' type='submit')
                             i(class='material-icons') delete
-                        button(class='btn-floating waves-effect blue' id='guardar' type='submit')
+                        button(class='btn-floating waves-effect blue tooltipped' data-position='bottom' data-delay='50' data-tooltip='Guardar'  id='guardar' type='submit')
                             i(class='material-icons') system_update_alt
                             
-    include generals/footer
+        include generals/footer

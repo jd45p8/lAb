@@ -8,17 +8,6 @@
     text-align: right;
 }
 
-#pie{
-    font-size: 16px;
-    text-align: center;
-    position: relative;
-    bottom: 0px;
-    width: 100%;
-    height: 80px;
-    background: dodgerblue;
-    color: white;    
-}
-
 #borrar{
     margin-right: 10px;
 }

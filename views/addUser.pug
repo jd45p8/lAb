@@ -1,14 +1,13 @@
 html
     head
         include generals/head
-        link(rel='stylesheet', href='addStyles.css', type='text/css')
-        link(rel='stylesheet', href='fontStyles.css', type='text/css')
+        link(rel='stylesheet', href='addStyles.css', type='text/css')        
     body
         include generals/nav
         div(class='z-depth-3' id='container')        
             header
                 h2 Añadir cajer@                
-            form(class='col s12' action='/addUser' method='post')
+            form(class='col s12' action='/addCajer@' method='post')
                 div(class='row')
                     div(class='input-field col s12')
                         input(id='first_name' type='text' class='validate' name='first_name' required)

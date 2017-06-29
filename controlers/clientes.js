@@ -3,12 +3,14 @@ var express = require('express');
 module.exports = function(app, passport){
     app.get('/addCliente', function(req, res){
         res.render('addCliente',{
-            user : req.user
+            title : 'lAb| Añadir cliente',
+            user : req.user            
         });
     });
     
-    app.get('/viewClientes', function(res,res){
+    app.get('/viewClientes', function(req,res){
        res.render('viewClientes',{
+           title : 'lAb| Ver clientes',
            user : req.user
        }); 
     });

@@ -14,6 +14,7 @@ module.exports = function(passport){
        });
     });
     
+    /*
     passport.use('local-signup', new LocalStrategy({
         usernameField : 'email',
         passwordField : 'password',
@@ -22,9 +23,7 @@ module.exports = function(passport){
     function(req, email, password, done){        
         //asynchronus
         process.nextTick(function(){            
-            console.log('nextTick has happen');
             User.findOne({'local.email': email}, function(err, user){   
-                console.log('All rigth');
                 if(err)                 
                     return done(err);
                 
@@ -54,6 +53,7 @@ module.exports = function(passport){
             });
         });
     }));
+    */
     
     passport.use('local-login', new LocalStrategy({
         usernameField : 'email',

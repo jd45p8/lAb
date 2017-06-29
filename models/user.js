@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    bcrypt = require('bcrypt');
 
 var UserSchema = new mongoose.Schema({
     local: {
@@ -26,6 +27,7 @@ var UserSchema = new mongoose.Schema({
             trim: true
         },
         cargo: {
+           type: String,
            enum: ['cajer@', 'admin']
         }        
     }

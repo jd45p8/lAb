@@ -3,17 +3,19 @@ var express = require('express')
 module.exports = function(app, passport){
     app.get('/home', function(req,res){
        res.render('home', {
+           title : 'lAb',
            user : req.user
        }); 
     });
     
     app.get('/login', function(req,res){
         res.render('login', {
+            title : 'lAb| Login',
             user : req.user
         });
     });
     
-    app.post('/login', passport.authenticate('local-signup',{
+    app.post('/login', passport.authenticate('local-login',{
         successRedirect : '/home',
         failureRedirect : '/login',
         failureFlash : true
@@ -26,11 +28,9 @@ module.exports = function(app, passport){
     
     //Redirect
     app.get('/', function(req,res){
-        res.redirect('/home', {
-            user : req.user
-        });
+        res.redirect('/home');
     });
-};
+}
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated())

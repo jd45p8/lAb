@@ -1,8 +1,7 @@
 html
     head
         include generals/head 
-        link(rel='stylesheet', href='viewStyles.css',type='text/css')
-        link(rel='stylesheet', href='fontStyles.css', type='text/css')
+        link(rel='stylesheet', href='viewStyles.css',type='text/css')        
         link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
     body
         include generals/nav
@@ -22,11 +21,11 @@ html
                             label(for='cedula') Cedula
                 footer
                     div(class='col s12' id='footerTarjeta')
-                        button(class='btn-floating waves-effect red' id='borrar' type='submit')
+                        button(class='btn-floating waves-effect red tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar'  id='borrar' type='submit')
                             i(class='material-icons') delete
-                        button(class='btn-floating waves-effect blue' id='guardar' type='submit')
+                        button(class='btn-floating waves-effect blue tooltipped' data-position='bottom' data-delay='50' data-tooltip='Guardar'  id='guardar' type='submit')
                             i(class='material-icons') system_update_alt
-                        button(class='btn-floating waves-effect green' id='factura' type='submit')
+                        button(class='btn-floating waves-effect green tooltipped' data-position='bottom' data-delay='50' data-tooltip='Añadir factura'  id='factura' type='submit')
                             i(class='material-icons') insert_drive_file
 
                             

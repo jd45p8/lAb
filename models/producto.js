@@ -4,7 +4,7 @@ var ProductSchema = new mongoose.Schema({
     id : String,
     name : String,
     valor : {
-        type : String,
+        type : Number,
         trim : true
     }
     

@@ -1,7 +1,16 @@
 nav
-    div(class='nav-wrapper' style='background:dodgerblue;')
-        a(href='#!' class='brand-logo center') lAb
-        ul(class='rigth')
-            li
-                a(href='/login') Iniciar sesión                
-        
+    div(class='nav-wrapper' style='background:dodgerblue;')       
+        - if(user)
+            a(href='#!' class='brand-logo rigth') lAb
+            ul(class='rigth')
+                li
+                    a(href='/addCliente') Añadir cliente
+                li
+                    a(href='/viewClientes') Ver clientes
+                li
+                    a(href='/logout') Salir
+        - else
+            a(href='#!' class='brand-logo center') lAb
+            ul(class='rigth')
+                li
+                    a(href='/login') Iniciar sesión                

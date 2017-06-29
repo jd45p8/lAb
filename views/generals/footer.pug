@@ -1,6 +1,25 @@
+div(id='modal1' class='modal bottom-sheet')
+    div(class='modal-content')
+        h4 Notificaiones 
+            i(class='material-icons') notifications_active
+        - if (messages.exito.length > 0)            
+            p ¡Done!
+        - else if (messages.error.length > 0)
+            p ¡Error!
+        - else
+            p ¡No hay notificaiones pendientes!        
+        
+    div(class='modal-footer')
+        a(id='ok' href='#!' class='modal-action modal-close waves-effect blue btn-flat') Listo
+        
 footer(class='page-footer' id='pie')
-    div
+    div(class='fixed-action-btn' style='bottom: 45px; rigth: 24px;')
+        a(href='#modal1' class='btn btn-floating btn-large waves-effect waves-light red')
+                i(class='material-icons') notifications_active    
+    div 
         p Copyrigth &copy 2017-2018 
             Strong una Persona
+
 script(src='/jquery-3.2.1.js')
 script(src='/materialize/js/materialize.js')
+script(src='/scripts/modalScript.js')

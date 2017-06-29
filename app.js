@@ -18,7 +18,9 @@ var configDB = require('./config/database.js');
 
 //Conection with database
 mongoose.Promise = global.Promise;
-mongoose.connect(configDB.url, {useMongoClient: true});
+mongoose.connect(configDB.url);
+
+//, {useMongoClient: true}
 
 //Get the default conection
 var db = mongoose.connection;
@@ -62,6 +64,14 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+/* Required for flash */
+app.use(function(req, res, next){
+    res.locals.messages = req.flash();
+    res.locals.messages.exito = req.flash('exito');
+    res.locals.messages.error = req.flash('error');
+    next();
+});
 
 /* Controladores de rutas */
 var controllers = glob.sync(rootPath + '/controlers/*.js');
