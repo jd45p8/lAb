@@ -6,7 +6,8 @@ var port = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var rootPath = path.normalize(__dirname + '/');
-var flash = require('connect-flash');
+var flash = require('express-flash');
+var cookieParser = require('cookie-parser');
 
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -27,7 +28,6 @@ var db = mongoose.connection;
 
 //Bind conection to error event
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
 
 //Express
 app.use(morgan('dev'));
@@ -58,20 +58,14 @@ models.forEach(function(model){
     require(model);
 });
 
+
 //passport
 require('./config/passport')(passport);
 
 app.use(passport.initialize());
+app.use(cookieParser());
 app.use(passport.session());
 app.use(flash());
-
-/* Required for flash */
-app.use(function(req, res, next){
-    res.locals.messages = req.flash();
-    res.locals.messages.exito = req.flash('exito');
-    res.locals.messages.error = req.flash('error');
-    next();
-});
 
 /* Controladores de rutas */
 var controllers = glob.sync(rootPath + '/controlers/*.js');

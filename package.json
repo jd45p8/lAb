@@ -8,9 +8,9 @@
     "dependencies": {
         "bcrypt": "^1.0.2",
         "body-parser": "^1.17.2",
-        "connect-flash": "^0.1.1",
         "cookie-parser": "^1.4.3",
         "express": "^4.15.3",
+        "express-flash": "0.0.2",
         "express-session": "^1.15.3",
         "glob": "^7.1.2",
         "jquery": "^3.2.1",
