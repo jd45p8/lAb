@@ -58,14 +58,13 @@ models.forEach(function(model){
     require(model);
 });
 
+app.use(cookieParser());
+app.use(flash()); //Is used to send messages to views
 
 //passport
 require('./config/passport')(passport);
-
 app.use(passport.initialize());
-app.use(cookieParser());
 app.use(passport.session());
-app.use(flash());
 
 /* Controladores de rutas */
 var controllers = glob.sync(rootPath + '/controlers/*.js');

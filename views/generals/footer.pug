@@ -3,9 +3,9 @@ div(id='modal1' class='modal bottom-sheet')
         h4 Notificaciones 
             i(class='material-icons') notifications_active
         - if (messages.exito)            
-            p ¡Done!
+            p #{messages.info}
         - else if (messages.error)
-            p ¡Error!
+            p #{messages.error}
         - else
             p ¡No hay notificaiones pendientes!        
         

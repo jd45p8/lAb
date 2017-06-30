@@ -2,7 +2,7 @@ nav
     div(class='nav-wrapper' style='background:dodgerblue;')       
         - if(user)
             a(href='#!' class='brand-logo rigth') lAb
-            ul(class='rigth')
+            ul(class='left')
                 li
                     a(href='/addCliente') Añadir cliente
                 li
@@ -11,6 +11,6 @@ nav
                     a(href='/logout') Salir
         - else
             a(href='#!' class='brand-logo center') lAb
-            ul(class='rigth')
+            ul(class='left')
                 li
                     a(href='/login') Iniciar sesión                
