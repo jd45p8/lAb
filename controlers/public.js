@@ -8,20 +8,20 @@ module.exports = function(app, passport){
        }); 
     });
     
-    app.get('/login', function(req,res){
+    app.get('/login',isNotLoggedIn, function(req,res){
         res.render('login', {
             title : 'lAb| Login',
             user : req.user
         });
     });
     
-    app.post('/login', passport.authenticate('local-login',{
+    app.post('/login',isNotLoggedIn, passport.authenticate('local-login',{
         successRedirect : '/home',
         failureRedirect : '/login',
         failureFlash : true
     }));
     
-    app.get('/logout', function(req,res){
+    app.get('/logout',isLoggedIn, function(req,res){
         req.logout();
         res.redirect('/login');
     });
@@ -36,4 +36,10 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated())
         return next();
     res.redirect('/login');
+}
+
+function isNotLoggedIn(req,res,next){
+    if(!req.isAuthenticated())
+        return next();
+    res.redirect('/');
 }

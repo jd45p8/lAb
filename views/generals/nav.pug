@@ -1,16 +1,27 @@
 nav
-    div(class='nav-wrapper' style='background:dodgerblue;')       
+    div(class='nav-wrapper' style='background:dodgerblue;')
+        a(href='/' class='brand-logo center') lAb
         - if(user)
-            a(href='#!' class='brand-logo rigth') lAb
+           
             ul(class='left')
-                li
-                    a(href='/addCliente') Añadir cliente
                 li
                     a(href='/viewClientes') Ver clientes
                 li
+                    a(href='/addCliente') Añadir cliente                
+                li  
+                    a(href='/viewProductos') Ver productos
+                - if(user.local.cargo == 'admin')
+                    li
+                        a(href='/addProducto') Añadir producto
+                
+            ul(class='right')
+                - if(user.local.cargo == 'admin')                    
+                    li
+                        a(href='/addCajer@') Añadir cajer@ 
+                li
                     a(href='/logout') Salir
+                    
         - else
-            a(href='#!' class='brand-logo center') lAb
-            ul(class='left')
+            ul(class='right')
                 li
                     a(href='/login') Iniciar sesión                

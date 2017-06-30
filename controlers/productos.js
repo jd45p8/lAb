@@ -3,35 +3,52 @@ var express = require('express'),
     Producto = mongoose.model('Producto');
 
 module.exports = function(app, passport){
-    app.get('/addProducto', function(req, res){
+    app.get('/addProducto', isLoggedIn, function(req, res){
         res.render('addProducto', {
             title : 'lAb| Añadir productos',
             user : req.user
         });        
     });
     
-    app.get('/viewProductos', function(req,res){
-        res.render('viewProductos',{
-            title : 'lAb| Ver productos',
-            user : req.user
-        });    
+    app.get('/viewProductos', isLoggedIn, function(req,res){
+        Producto.find({},function(err, productos){
+            if(err){
+                req.flash('error', 'Ha ocurrido un error.');
+                res.redirect('back'); 
+            }
+                
+            res.render('viewProductos',{
+                title : 'lAb| Ver productos',
+                user : req.user,
+                productos : productos
+            });  
+        });
+          
     });
     
-    app.post('/addProducto', function(req, res){
+    app.post('/addProducto', isLoggedIn, function(req, res){
         Producto.findOne({'name' : req.body.product_name}, function(err, producto){
-            if(err)
-                req.flash('error', 'Ha ocurrido un error.');
+            if(err){
+                req.flash('error', 'Ha ocurrido un error.')
+                res.redirect('back');
+            }
                 
-            if(producto)
-                res.redirect('/addProducto', req.flash('error', 'Ya existe un producto con ese nombre.'));
+            if(producto){
+                req.flash('error', 'Ya existe un producto con ese nombre.')
+                res.redirect('back');
+            }
         });
         
         Producto.findOne({'id' : req.body.code}, function(err, producto){
-            if(err)
-                req.flash('error', 'Ha ocurrido un error.');
+            if(err){
+                req.flash('error', 'Ha ocurrido un error.')
+                res.redirect('back');
+            }
             
-            if(producto)
-                res.redirect('/addProducto', req.flash('error', 'Ya existe un producto con ese id.'));
+            if(producto){
+                req.flash('error', 'Ya existe un producto con ese id.')
+                res.redirect('back');
+            }
         });
         
         
@@ -43,12 +60,14 @@ module.exports = function(app, passport){
         
         newProducto.save(function(err){
             if(err)
-                throw(err);
-            req.flash('exito', 'Producto añadido exitosamente.')
-            res.redirect('/addProducto');
+                req.flash('error', 'Ha ocurrido un error.')
+            else
+                req.flash('exito', 'Producto añadido exitosamente.')
+            res.redirect('back');
         });
         
-    });
+    });    
+    
 };
 
 function isLoggedIn(req, res, next){

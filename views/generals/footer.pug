@@ -1,21 +1,9 @@
-div(id='modal1' class='modal bottom-sheet')
-    div(class='modal-content')
-        h4 Notificaciones 
-            i(class='material-icons') notifications_active
-        - if (messages.exito)            
-            p #{messages.info}
-        - else if (messages.error)
-            p #{messages.error}
-        - else
-            p ¡No hay notificaiones pendientes!        
-        
-    div(class='modal-footer')
-        a(id='ok' href='#!' class='modal-action modal-close waves-effect blue btn-flat') Listo
-        
-footer(class='page-footer' id='pie')
-    div(class='fixed-action-btn' style='bottom: 45px; rigth: 24px;')
-        a(href='#modal1' class='btn btn-floating btn-large waves-effect waves-light red')
-                i(class='material-icons') notifications_active    
+- if (messages.info)
+    include modal
+- else if (messages.error)
+    include modal
+    
+footer(class='page-footer' id='pie')  
     div 
         p Copyrigth &copy 2017-2018 
             Strong una Persona

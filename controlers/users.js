@@ -3,7 +3,7 @@ var express = require('express'),
     User = mongoose.model('User');
     
 module.exports = function(app, passport){
-    app.get('/addCajer@',function(req,res){
+    app.get('/addCajer@',isLoggedIn, function(req,res){
         res.render('addUser',{
             title : 'lAb| Añadir Cajer@',
             user: req.user
@@ -18,7 +18,7 @@ module.exports = function(app, passport){
     })); 
     */
     
-    app.post('/addCajer@', function(req, res){
+    app.post('/addCajer@',isLoggedIn, function(req, res){
         User.findOne({'local.email': req.body.email}, function(err, user){   
             if(err)                 
                 return done(err);
@@ -30,7 +30,7 @@ module.exports = function(app, passport){
                 
                 User.findOne({'local.cedula': req.body.cedula}, function(err, user){
                     if(err)                 
-                    return done(err);
+                        res.redirect('back', req.flash('error', 'Ha ocurrido un error.'))
                     
                     if(user){
                         req.flash('error','La cedula ya existe');

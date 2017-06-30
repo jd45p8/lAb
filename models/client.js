@@ -27,6 +27,6 @@ var ClientSchema = new mongoose.Schema({
     seleccionable: {
         type: Boolean
     }
-},{collection:'clientes'});
+});
 
 mongoose.model('Client', ClientSchema);
