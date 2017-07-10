@@ -68,6 +68,21 @@ module.exports = function(app, passport){
         });
         
     });
+    
+    app.post('/deleteCliente',isLoggedIn, function(req,res){
+        Client.remove({'cedula': req.body.cedula}, function(err, client){
+            if(err){
+                req.flash('error', 'Ha ocurrido un error.');
+                res.redirect('back'); 
+            }
+            
+            if(client)
+                req.flash('exito', 'Se ha eliminado el cliente ' + client.name.nombres + 'con exito.');
+            else
+                req.flash('error', 'Cliente no encontrado.');
+            res.redirect('back');            
+        });    
+    });
 }
 
 function isLoggedIn(req, res, next){

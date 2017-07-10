@@ -35,6 +35,7 @@ module.exports = function(app, passport){
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated())
         return next();
+    req.flash('error','No ha iniciado sesión');
     res.redirect('/login');
 }
 

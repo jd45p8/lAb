@@ -1,6 +1,8 @@
 var express = require('express'),
     mongoose = require('mongoose'),
-    Producto = mongoose.model('Producto');
+    Producto = mongoose.model('Producto'),
+    router = require('router')();
+    productoRoute = router.route('/productos/:producto_id');
 
 module.exports = function(app, passport){
     app.get('/addProducto', isLoggedIn, function(req, res){
@@ -66,12 +68,55 @@ module.exports = function(app, passport){
             res.redirect('back');
         });
         
-    });    
+    });  
+    
+    app.post('/deleteProducto',isLoggedIn, function(req,res){
+        var urlBack = '/viewProductos'; 
+        Producto.remove({'id': req.body.code},function(err, producto){
+            if(err){
+                req.flash('error', 'Ha ocurrido un error.');  
+                res.redirect('back');
+            }
+            
+            if(producto)              
+                req.flash('exito', 'Se ha eliminado el producto ' + producto.id + 'con exito.');    
+            else
+                req.flash('error', 'Producto no encontrado.');                
+            res.redirect('back');            
+        });
+    });
+    
+    app.post('/updateProducto', isLoggedIn, function(req,res){
+        Producto.find({'id': req.body.code}, function(err, producto){
+            if(err){
+                req.flash('error', 'Ha ocurrido un error.');  
+                res.redirect('back');
+            }
+            
+            if(producto){           
+                producto.name = req.body.product_name;
+                producto.valor = req.body.valor;
+                
+                producto.save(function(err){
+                   if(err){
+                        req.flash('error', 'Ha ocurrido un error.');  
+                        res.redirect('back');
+                    }
+                    
+                    req.flash('exito', 'Se ha actualizado el producto ' + producto.id + 'con exito.');    
+                });
+            }
+            else
+                req.flash('error', 'No se ha encontrado el producto.');  
+            res.redirect('back');
+        });
+    });
     
 };
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated())
         return next();
+    req.flash('error','No ha iniciado sesión');
     res.redirect('/login');
 }

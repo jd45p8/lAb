@@ -6,30 +6,30 @@ html
     body
         include generals/nav
         div
-            - if(clients)
-                each client in clients
-                    div(class='z-depth-3' id='tarjeta')        
-                        form(class='col s12')
-                            div(class='row')
-                                div(class='input-field col s6')
-                                    input(id='first-name' type='text' name='first-name' required value=client.name.nombres)
-                                    label(for='first-name') Nombres
-                                div(class='input-field col s6')
-                                    input(id='last-name' type='text' name='last-name' required value=client.name.apellidos)
-                                    label(for='last-name') Apellidos
-                            div(class='row')
-                                div(class='input-field col s12')
-                                    input(id='cedula' type='number' min='0' name='cedula' required value=client.cedula)
-                                    label(for='cedula') Cedula
+            each client in clients
+                div(class='z-depth-3' id='tarjeta')        
+                    form(class='col s12' method='post')
+                        div(class='row')
+                            div(class='input-field col s6')
+                                input(id='first-name' type='text' name='first-name' required value=client.name.nombres)
+                                label(for='first-name') Nombres
+                            div(class='input-field col s6')
+                                input(id='last-name' type='text' name='last-name' required value=client.name.apellidos)
+                                label(for='last-name') Apellidos
+                        div(class='row')
+                            div(class='input-field col s12')
+                                input(id='cedula' type='number' min='0' name='cedula' required value=client.cedula)
+                                label(for='cedula') Cedula
                         footer
                             div(class='col s12' id='footerTarjeta')
-                                button(class='btn-floating waves-effect red tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar'  id='borrar' type='submit')
-                                    i(class='material-icons') delete
-                                button(class='btn-floating waves-effect blue tooltipped' data-position='bottom' data-delay='50' data-tooltip='Guardar'  id='guardar' type='submit')
+                                - if(user.local.cargo == 'admin')
+                                    button(class='btn-floating waves-effect red tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar'  id='borrar' type='submit' onclick="this.form.action='/deleteCliente'")
+                                        i(class='material-icons') delete
+                                button(class='btn-floating waves-effect blue tooltipped' data-position='bottom' data-delay='50' data-tooltip='Actualizar'  id='actualizar' type='submit')
                                     i(class='material-icons') system_update_alt
                                 button(class='btn-floating waves-effect green tooltipped' data-position='bottom' data-delay='50' data-tooltip='Añadir factura'  id='factura' type='submit')
                                     i(class='material-icons') insert_drive_file
-            - else
+            else
                 div(class='z-depth-3' id='tarjeta' style='text-align: center;')
                     h2 ¡No hay clientes para mostrar!
                                     

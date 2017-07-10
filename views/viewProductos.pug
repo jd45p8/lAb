@@ -5,28 +5,27 @@ html
         link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
     body
         include generals/nav                
-        div
-            - if(productos)
-                each producto in productos
-                    div(class='z-depth-3' id='tarjeta')
-                        form(class='col s12')
-                            div(class='row')                            
-                                div(class='input-field col s6')
-                                    input(id='product_name' type='text' name='product_name' value=producto.name required)
-                                    label(for='product_name') Nombre
-                                div(class='input-field col s6')
-                                    input(id='valor' type='text' name='code' value=producto.id required)
-                                    label(for='code') Código
-                                div(class='input-field col s6')
-                                    input(id='valor' type='number' min='0' name='valor' value= producto.valor required)
-                                    label(for='valor') Valor
-                                - if(user.local.cargo == 'admin')
-                                    div(class='col s6' id='footerTarjeta')                                
-                                        button(class='btn-floating waves-effect red tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar'  id='borrar' type='submit')
-                                            i(class='material-icons') delete
-                                        button(class='btn-floating waves-effect blue tooltipped' data-position='bottom' data-delay='50' data-tooltip='Guardar'  id='guardar' type='submit')
-                                            i(class='material-icons') system_update_alt
-            - else
+        div            
+            each producto in productos
+                div(class='z-depth-3' id='tarjeta')
+                    form(class='col s12' method='post' action='')
+                        div(class='row')                            
+                            div(class='input-field col s6')
+                                input(id='product_name' type='text' name='product_name' value=producto.name required)
+                                label(for='product_name') Nombre
+                            div(class='input-field col s6')
+                                input(id='code' type='text' name='code' value=producto.id disabled)
+                                label(for='code') Código
+                            div(class='input-field col s6')
+                                input(id='valor' type='number' min='0' name='valor' value= producto.valor required)
+                                label(for='valor') Valor
+                            - if(user.local.cargo == 'admin')
+                                div(class='col s6' id='footerTarjeta')                                
+                                    button(class='btn-floating waves-effect red tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar'  id='borrar' type='submit' onclick="this.form.action='/deleteProducto'")
+                                        i(class='material-icons') delete
+                                    button(class='btn-floating waves-effect blue tooltipped' data-position='bottom' data-delay='50' data-tooltip='Actulizar'  id='actualizar' type='submit' onclick="this.form.action='/updateProducto'")
+                                        i(class='material-icons') system_update_alt
+            else
                 div(class='z-depth-3' id='tarjeta' style='text-align: center;')
                     h2 ¡No hay productos para mostrar!
                     
