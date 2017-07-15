@@ -1,6 +1,7 @@
 var express = require('express'),
     mongoose = require('mongoose'),
-    Client = mongoose.model('Client');
+    Client = mongoose.model('Client'),
+    Producto = mongoose.model('Producto');
 
 module.exports = function(app, passport){
     app.get('/addCliente', isLoggedIn, function(req, res){
@@ -48,10 +49,38 @@ module.exports = function(app, passport){
                     if(err)
                         req.flash('error', 'Ha ocurrido un error.');
                     else
-                        req.flash('exito', 'Cliente '+ req.body.first_name + 'creado con exito.');                      
+                        req.flash('exito', 'Cliente '+ req.body.first_name + ' creado con exito.');                      
                     res.redirect('back');
                 });
             }
+    });
+    
+    app.post('/updateCliente', isLoggedIn, function(req, res){
+        Client.findOne({'cedula': req.body.cedula}, function(err, client){
+            if(err){
+                req.flash('error', 'Ha ocurrido un error.');
+                res.redirect('back');
+            }
+            
+            if(client){
+                if(req.body.first_name.length + req.body.last_name.length < 3)
+                    req.flash('error', 'El nombre debe tener por lo menos 3 letras ' + req.body.first_name + " " + req.body.last_name);
+                else{
+                    client.name.nombres = req.body.first_name;
+                    client.name.apellidos = req.body.last_name;
+                    
+                    client.save(function(err, cliente){
+                        if(err)
+                            req.flash('error', 'Ha ocurrido un error.');
+                        else
+                            req.flash('exito', 'Cliente '+ req.body.first_name + ' actualizado con exito.'); 
+                    });                    
+                }                                
+            }else
+                req.flash('error', 'La cédula ' + req.body.cedula + ' no está registrada.');            
+            res.redirect('back');
+        });        
+        
     });
     
     app.get('/viewClientes', isLoggedIn, function(req, res){
@@ -60,11 +89,21 @@ module.exports = function(app, passport){
                 req.flash('error', 'Ha ocurrido un error.');
                 res.redirect('back'); 
             }
-            res.render('viewClientes',{
-                title : 'lAb| Ver clientes',
-                user : req.user,
-                clients : clients            
-            }); 
+            
+            Producto.find({}, function(err, productos){
+                if(err){
+                    req.flash('error', 'Ha ocurrido un error.');
+                    res.redirect('back'); 
+                }
+                
+                res.render('viewClientes',{
+                    title : 'lAb| Ver clientes',
+                    user : req.user,
+                    productos : productos,
+                    clients : clients            
+                }); 
+            });
+            
         });
         
     });
@@ -82,7 +121,8 @@ module.exports = function(app, passport){
                 req.flash('error', 'Cliente no encontrado.');
             res.redirect('back');            
         });    
-    });
+    });    
+    
 }
 
 function isLoggedIn(req, res, next){

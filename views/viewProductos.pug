@@ -14,12 +14,12 @@ html
                                 input(id='product_name' type='text' name='product_name' value=producto.name required)
                                 label(for='product_name') Nombre
                             div(class='input-field col s6')
-                                input(id='code' type='text' name='code' value=producto.id disabled)
+                                input(id='code' type='text' name='code' value=producto.id)
                                 label(for='code') Código
                             div(class='input-field col s6')
                                 input(id='valor' type='number' min='0' name='valor' value= producto.valor required)
                                 label(for='valor') Valor
-                            - if(user.local.cargo == 'admin')
+                            if(user.local.cargo == 'admin')
                                 div(class='col s6' id='footerTarjeta')                                
                                     button(class='btn-floating waves-effect red tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar'  id='borrar' type='submit' onclick="this.form.action='/deleteProducto'")
                                         i(class='material-icons') delete

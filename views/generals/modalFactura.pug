@@ -1,0 +1,26 @@
+div(id='modal' class='modal modal-fixed-footer')
+    form(method='post' id='facturaPost')
+        div(class='modal-content')        
+            h4 Productos 
+                i(class='material-icons') store
+            table(id='tablaProductos')            
+                thead
+                    tr
+                        th Nombre
+                        th Valor
+                        th Cantidad
+                tbody
+                    each producto in productos
+                        tr
+                            td #{producto.name}
+                            td #{producto.valor}
+                            td 
+                                div(class='input-field')
+                                    input(id='cantidad' type='number' min='0' name='cedula')
+                                    label(for='cantidad') Cantidad
+
+        div(class='modal-footer')
+            a(id='ok' href='#!' class='modal-action modal-close waves-effect red btn-flat') X
+            button(id='facturar' class='waves-effect blue btn-flat' style='margin-right: 5px; color: white;') Facturar
+        
+        

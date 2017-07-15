@@ -11,24 +11,26 @@ html
                     form(class='col s12' method='post')
                         div(class='row')
                             div(class='input-field col s6')
-                                input(id='first-name' type='text' name='first-name' required value=client.name.nombres)
-                                label(for='first-name') Nombres
+                                input(id='first_name' type='text' name='first_name' required value=client.name.nombres)
+                                label(for='first_name') Nombres
                             div(class='input-field col s6')
-                                input(id='last-name' type='text' name='last-name' required value=client.name.apellidos)
-                                label(for='last-name') Apellidos
+                                input(id='last_name' type='text' name='last_name' required value=client.name.apellidos)
+                                label(for='last_name') Apellidos
                         div(class='row')
                             div(class='input-field col s12')
                                 input(id='cedula' type='number' min='0' name='cedula' required value=client.cedula)
                                 label(for='cedula') Cedula
-                        footer
-                            div(class='col s12' id='footerTarjeta')
-                                - if(user.local.cargo == 'admin')
-                                    button(class='btn-floating waves-effect red tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar'  id='borrar' type='submit' onclick="this.form.action='/deleteCliente'")
-                                        i(class='material-icons') delete
-                                button(class='btn-floating waves-effect blue tooltipped' data-position='bottom' data-delay='50' data-tooltip='Actualizar'  id='actualizar' type='submit')
-                                    i(class='material-icons') system_update_alt
-                                button(class='btn-floating waves-effect green tooltipped' data-position='bottom' data-delay='50' data-tooltip='Añadir factura'  id='factura' type='submit')
+                        
+                        div(class='col s12' id='footerTarjeta')
+                            if(user.local.cargo == 'admin')
+                                button(class='btn-floating waves-effect red tooltipped' data-position='bottom' data-delay='50' data-tooltip='Eliminar'  id='borrar' type='submit' onclick="this.form.action='/deleteCliente'")
+                                    i(class='material-icons') delete
+                            button(class='btn-floating waves-effect blue tooltipped' data-position='bottom' data-delay='50' data-tooltip='Actualizar'  id='actualizar' type='submit' onclick="this.form.action='/updateCliente'")
+                                i(class='material-icons') system_update_alt
+                            a(class='btn-floating waves-effect green tooltipped' data-position='bottom' data-delay='50' data-tooltip='Añadir factura'  id='factura' href='#modal')
                                     i(class='material-icons') insert_drive_file
+                    include generals/modalFactura
+                            
             else
                 div(class='z-depth-3' id='tarjeta' style='text-align: center;')
                     h2 ¡No hay clientes para mostrar!
